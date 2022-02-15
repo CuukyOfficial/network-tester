@@ -3,10 +3,8 @@ Dies ist ein Tester für die erste Programmieren Abschlussaufgabe 2022 des KIT.<
 Im Folgenden wird die Benutzung erklärt.
 
 ### Eigene Tests schreiben
-Einfach eine neue Klasse in <code>de.cuuky.networktester.tests</code> erstellen und sie<br>
-<code>de.cuuky.networktester.tests.Test</code> extenden lassen. Damit könnt ihr denn die<br>
-<code>test()</code> Methode voll mit Tests füllen und z.B. Ausgaben oder Zustände mit der<br>
-Methode <code>verify(String name, T test1, T test2)</code> überprüfen.<br>
+Einfach eine neue Klasse in <code>de.cuuky.networktester.tests</code> erstellen und sie <code>de.cuuky.networktester.tests.Test</code> extenden lassen. Damit könnt ihr denn die
+<code>test()</code> Methode voll mit Tests füllen und z.B. Ausgaben oder Zustände mit der Methode <code>verify(String name, T test1, T test2)</code> überprüfen.<br>
 Ein Beispiel ist bereits gegeben; <code>de.cuuky.networktester.tests.DefaultInteractionTest</code><br>
 Danach (offensichtlich) die neuen Changes auf GitHub pushen, damit die anderen die Tests auch machen können.
 

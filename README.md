@@ -15,10 +15,8 @@ Falls auf GitHub releases vorhanden sind, könnt ihr die einfach runterladen und
 2. Die GitHub Repository in IntelliJ clonen und das Programm als Jar in den oben genannten Ordner mit dem Namen "NetworkTester.jar" exportieren.<br>
 
 ### Den Tester nutzen
-Euer fertiges Programm (als Jar) muss einfach in dem Ordner als <code>Test.jar</code> legen, wo auch die <code>start.bat</code> auch ist. Dann einfach<br>
+Euer fertiges Programm (als Jar) muss einfach in dem Ordner als <code>Test.jar</code> liegen, wo auch die <code>start.bat</code> ist. Dann einfach
 die .bat starte und fertig. Der Pfad der Jar ist aber auch per Startargumente änderbar.<br>
 Nachdem der NetworkTester fertig ist, könnt ihr einfach in IntelliJ euer eigenes Programm neu exportieren und enter drücken, was die Tests neu starten sollte. 
- 
-<br>
 <br>
 Happy Testing! 42

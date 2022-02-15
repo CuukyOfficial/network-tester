@@ -5,7 +5,7 @@ Im Folgenden wird die Benutzung erklärt.
 ### Eigene Tests schreiben
 Einfach eine neue Klasse in <code>de.cuuky.networktester.tests</code> erstellen und sie <code>de.cuuky.networktester.tests.Test</code> extenden lassen. Damit könnt ihr denn die
 <code>test()</code> Methode voll mit Tests füllen und z.B. Ausgaben oder Zustände mit der Methode <code>verify(String name, T test1, T test2)</code> überprüfen.<br>
-Danach auch in den enum <code>de.cuuky.networktester.tests.TestType<br> den eben erstellten Test eintragen, mit Namen und Referenz zu leerem Konstruktor. 
+Danach auch in den enum <code>de.cuuky.networktester.tests.TestType</code> den eben erstellten Test eintragen, mit Namen und Referenz zu leerem Konstruktor.<br>
 Ein Beispiel ist auch bereits gegeben, um sich etwas zu orientieren; <code>de.cuuky.networktester.tests.DefaultInteractionTest</code>.<br>
 Danach (offensichtlich) die neuen Changes auf GitHub pushen, damit die Anderen die Tests auch machen können.
 

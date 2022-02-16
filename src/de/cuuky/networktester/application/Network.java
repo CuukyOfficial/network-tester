@@ -2,14 +2,14 @@ package de.cuuky.networktester.application;
 
 import java.util.List;
 
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"unchecked", "unused"})
 public class Network extends ApplicationMirror {
 
     public Network(final IP root, final List<IP> children) {
         super(root, children);
     }
 
-    public Network(final String bracketNotation) throws Exception {
+    public Network(final String bracketNotation) {
         super(bracketNotation);
     }
 

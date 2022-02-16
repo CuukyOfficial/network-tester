@@ -2,7 +2,7 @@ package de.cuuky.networktester.application;
 
 public class IP extends ApplicationMirror implements Comparable<IP> {
 
-    public IP(final String pointNotation) throws Exception {
+    public IP(final String pointNotation) {
         super(pointNotation);
     }
 

@@ -3,17 +3,21 @@ package de.cuuky.networktester.application;
 import de.cuuky.networktester.Main;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public abstract class ApplicationMirror {
 
+    private static final Collection<Class<?>> METHOD_MAPPINGS = List.of(List.class);
     private static final Map<Class<?>, Class<?>> mirrorCache = new HashMap<>();
 
-    private Class<?> mirrorClass;
-    private Object mirror;
+    private final Class<?> mirrorClass;
+    private final Object mirror;
+    private final Map<String, Method> methodCache = new HashMap<>();
 
     public ApplicationMirror(Object... parameters) {
         this.mirrorClass = this.findClass();
@@ -25,9 +29,12 @@ public abstract class ApplicationMirror {
         return this.getClass().getSimpleName();
     }
 
+    private Class<?> checkMethodMapping(Class<?> check) {
+        return METHOD_MAPPINGS.stream().filter(m -> m.isAssignableFrom(check)).findFirst().orElse(check);
+    }
+
     private Class<?> mapParameterType(Class<?> toMap) {
-        // kind of a cheat but who cares
-        return List.class.isAssignableFrom(toMap) ? List.class : mirrorCache.getOrDefault(toMap, toMap);
+        return mirrorCache.getOrDefault(toMap, this.checkMethodMapping(toMap));
     }
 
     private Object mapParameter(Object parameter) {
@@ -42,6 +49,16 @@ public abstract class ApplicationMirror {
         return Arrays.stream(parameters).map(this::mapParameter).toArray(Object[]::new);
     }
 
+    private Method getMethod(String name, Class<?>... parameterClasses) throws NoSuchMethodException {
+        if (this.methodCache.containsKey(name))
+            return this.methodCache.get(name);
+        else {
+            Method method = this.mirrorClass.getDeclaredMethod(name, parameterClasses);
+            this.methodCache.put(name, method);
+            return method;
+        }
+    }
+
     private Class<?> findClass() {
         return Main.findClass(this.getClassName());
     }
@@ -50,7 +67,7 @@ public abstract class ApplicationMirror {
         Class<?>[] mapParameterTypes = this.mapParameterTypes(parameters);
         Object[] mappedParameters = this.mapParameters(parameters);
         try {
-             return this.mirrorClass.getDeclaredConstructor(mapParameterTypes).newInstance(mappedParameters);
+            return this.mirrorClass.getDeclaredConstructor(mapParameterTypes).newInstance(mappedParameters);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -61,7 +78,7 @@ public abstract class ApplicationMirror {
         Class<?>[] parameterClasses = this.mapParameterTypes(parameters);
         Object[] mappedParameters = this.mapParameters(parameters);
         try {
-            return this.mirrorClass.getDeclaredMethod(name, parameterClasses).invoke(this.mirror, mappedParameters);
+            return this.getMethod(name, parameterClasses).invoke(this.mirror, mappedParameters);
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }

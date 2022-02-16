@@ -68,7 +68,9 @@ abstract class ApplicationMirror {
         Object[] mappedParameters = this.mapParameters(parameters);
         try {
             return this.mirrorClass.getDeclaredConstructor(mapParameterTypes).newInstance(mappedParameters);
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        } catch (InvocationTargetException e) {
+            throw new MirrorExecutableException(e);
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException e) {
             e.printStackTrace();
         }
         return null;
@@ -79,7 +81,9 @@ abstract class ApplicationMirror {
         Object[] mappedParameters = this.mapParameters(parameters);
         try {
             return this.getMethod(name, parameterClasses).invoke(this.mirror, mappedParameters);
-        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        } catch (InvocationTargetException e) {
+            throw new MirrorExecutableException(e);
+        } catch (IllegalAccessException | NoSuchMethodException e) {
             e.printStackTrace();
         }
         return null;

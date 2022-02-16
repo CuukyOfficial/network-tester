@@ -38,7 +38,7 @@ public abstract class ApplicationMirror {
     }
 
     private Object mapParameter(Object parameter) {
-        return parameter instanceof ApplicationMirror ? ((ApplicationMirror) parameter).getMirror() : parameter;
+        return parameter instanceof ApplicationMirror ? ((ApplicationMirror) parameter).mirror : parameter;
     }
 
     private Class<?>[] mapParameterTypes(Object... parameterTypes) {
@@ -83,9 +83,5 @@ public abstract class ApplicationMirror {
             e.printStackTrace();
         }
         return null;
-    }
-
-    Object getMirror() {
-        return this.mirror;
     }
 }

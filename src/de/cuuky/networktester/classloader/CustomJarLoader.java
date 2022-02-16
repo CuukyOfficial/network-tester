@@ -14,7 +14,7 @@ public class CustomJarLoader {
     private final Collection<Class<?>> loaded;
 
     public CustomJarLoader(String pathToJar) throws IOException, ClassNotFoundException {
-        this.classLoader = new CustomClassLoader(new URL("jar:file:" + pathToJar+"!/"));
+        this.classLoader = new CustomClassLoader(new URL("jar:file:" + pathToJar + "!/"));
         this.loaded = new HashSet<>();
         this.loadClasses(new JarFile(pathToJar));
     }
@@ -24,18 +24,17 @@ public class CustomJarLoader {
         Enumeration<JarEntry> e = jarFile.entries();
         while (e.hasMoreElements()) {
             JarEntry je = e.nextElement();
-            if(je.isDirectory() || !je.getName().endsWith(".class")){
+            if (je.isDirectory() || !je.getName().endsWith(".class")) {
                 continue;
             }
             // -6 because of .class
-            String className = je.getName().substring(0,je.getName().length()-6);
+            String className = je.getName().substring(0, je.getName().length() - 6);
             className = className.replace('/', '.');
             this.loaded.add(this.classLoader.loadClass(className));
         }
     }
 
     public Class<?> findClass(String name) {
-        return this.loaded.stream().filter(c -> c.getSimpleName().equals(name))
-            .findFirst().orElse(null);
+        return this.loaded.stream().filter(c -> c.getSimpleName().equals(name)).findFirst().orElse(null);
     }
 }

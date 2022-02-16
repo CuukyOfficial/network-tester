@@ -31,6 +31,7 @@ public class IPParseTester extends Test {
         this.testIP("1.001.0.0", false);
         this.testIP("1..1.0.0", false);
         this.testIP("1.0.0.0.", false);
+        this.testIP(".1.0.0.0", false);
         this.testIP("1111.11110.1111.1111", false);
         this.testIP("256.192.0.100", false);
         this.testIP("1111.1111.1111.1111", false);

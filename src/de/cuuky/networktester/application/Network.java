@@ -9,7 +9,7 @@ public class Network extends ApplicationMirror {
         super(root, children);
     }
 
-    public Network(final String bracketNotation) {
+    public Network(final String bracketNotation) throws ParseException {
         super(bracketNotation);
     }
 

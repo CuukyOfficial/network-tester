@@ -1,7 +1,7 @@
 package de.cuuky.networktester.tests;
 
 import de.cuuky.networktester.application.IP;
-import de.cuuky.networktester.application.MirrorExecutableException;
+import de.cuuky.networktester.application.ParseException;
 
 /**
  * Checks if your IP class accepts valid and
@@ -17,7 +17,7 @@ public class IPParseTester extends Test {
         try {
             new IP(ip);
             this.addResult(ip, expected);
-        } catch (MirrorExecutableException e) {
+        } catch (ParseException e) {
             this.addResult(ip, !expected);
         }
     }

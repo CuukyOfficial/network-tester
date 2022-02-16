@@ -3,7 +3,7 @@ package de.cuuky.networktester.application;
 @SuppressWarnings({"unused"})
 public class IP extends ApplicationMirror implements Comparable<IP> {
 
-    public IP(final String pointNotation) {
+    public IP(final String pointNotation) throws ParseException {
         super(pointNotation);
     }
 

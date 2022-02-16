@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 
 public enum TestType {
 
-    DEFAULT_INTERACTION("Default interaction", DefaultInteractionTest::new);
+    EXAMPLE_INTERACTION("Example Interaction", ExampleInteractionTest::new);
 
     private final String name;
     private final Supplier<Test> creator;

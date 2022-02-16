@@ -5,10 +5,10 @@ import de.cuuky.networktester.application.Network;
 
 import java.util.List;
 
-public class DefaultInteractionTest extends Test {
+public class ExampleInteractionTest extends Test {
 
-    DefaultInteractionTest() {
-        super(TestType.DEFAULT_INTERACTION);
+    ExampleInteractionTest() {
+        super(TestType.EXAMPLE_INTERACTION);
     }
 
     // Unfinished cuz im lazy

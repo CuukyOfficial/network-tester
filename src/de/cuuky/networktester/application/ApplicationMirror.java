@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class ApplicationMirror {
+abstract class ApplicationMirror {
 
     private static final Collection<Class<?>> METHOD_MAPPINGS = List.of(List.class);
     private static final Map<Class<?>, Class<?>> mirrorCache = new HashMap<>();

@@ -1,15 +1,13 @@
 package de.cuuky.networktester.tests;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public abstract class Test {
 
     private static final String TEST_FAILED = " Passed %s/%s tests\n";
-    private static final String FAILED_LIST = " Failed tests: \n%s";
+    private static final String FAILED_LIST = " Test results: \n%s";
 
     private final TestType type;
     private final List<TestResult> results;
@@ -19,8 +17,8 @@ public abstract class Test {
         this.results = new LinkedList<>();
     }
 
-    private Collection<String> collectFailed() {
-        return this.results.stream().filter(TestResult::hasFailed).map(TestResult::getMessage).collect(Collectors.toList());
+    private long countPassed() {
+        return this.results.stream().filter(TestResult::wasSuccessful).count();
     }
 
     protected void addResult(String name, boolean success) {
@@ -39,9 +37,9 @@ public abstract class Test {
     }
 
     public String parseResult() {
-        Collection<String> failed = this.collectFailed();
-        String failedList = String.join("\n", failed);
-        return String.format(TEST_FAILED, this.results.size() - failed.size(), results.size())
+        String[] printResults = this.results.stream().map(TestResult::getMessage).toArray(String[]::new);
+        String failedList = String.join("\n", printResults);
+        return String.format(TEST_FAILED, this.countPassed(), this.results.size())
             + String.format(FAILED_LIST, failedList);
     }
 }

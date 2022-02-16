@@ -2,6 +2,8 @@ package de.cuuky.networktester.tests;
 
 class TestResult {
 
+    protected static final String TEST_PASSED = "  Passed '%s'";
+    protected static final String TEST_PASSED_DATA = TEST_PASSED + ": %s";
     protected static final String TEST_FAILED = "  Failed '%s'";
     protected static final String TEST_FAILED_DATA = TEST_FAILED + ": Given '%s', expected '%s'";
 
@@ -25,12 +27,19 @@ class TestResult {
         return o == null ? "null" : o.toString();
     }
 
-    boolean hasFailed() {
-        return !this.result;
+    private String detectMessage() {
+        boolean noData = this.given == null && this.expected == null;
+        if (this.result)
+            return noData ? TEST_PASSED : TEST_PASSED_DATA;
+        else return noData ? TEST_FAILED : TEST_FAILED_DATA;
+    }
+
+    boolean wasSuccessful() {
+        return this.result;
     }
 
     String getMessage() {
-        String format = this.given == null && this.expected == null ? TEST_FAILED : TEST_FAILED_DATA;
-        return String.format(format, this.name, this.saveToString(this.given), this.saveToString(this.expected));
+        String message = this.detectMessage();
+        return String.format(message, this.name, this.saveToString(this.given), this.saveToString(this.expected));
     }
 }

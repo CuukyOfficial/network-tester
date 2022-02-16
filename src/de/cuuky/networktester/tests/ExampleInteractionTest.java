@@ -5,6 +5,9 @@ import de.cuuky.networktester.application.Network;
 
 import java.util.List;
 
+/**
+ * Example interaction given on task sheet converted to match this system
+ */
 public class ExampleInteractionTest extends Test {
 
     ExampleInteractionTest() {

@@ -2,6 +2,10 @@ package de.cuuky.networktester.tests;
 
 import java.util.function.Supplier;
 
+/**
+ * Register new tests here with their name and a method reference to
+ * their empty constructor.
+ */
 public enum TestType {
 
     EXAMPLE_INTERACTION("Example Interaction", ExampleInteractionTest::new),

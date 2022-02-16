@@ -3,6 +3,10 @@ package de.cuuky.networktester.tests;
 import de.cuuky.networktester.application.IP;
 import de.cuuky.networktester.application.MirrorExecutableException;
 
+/**
+ * Checks if your IP class accepts valid and
+ * rejects invalid IP-Addresses.
+ */
 public class IPParseTester extends Test {
 
     IPParseTester() {

@@ -16,7 +16,7 @@ public class NetworkTester {
     private final Collection<Test> tests;
 
     public NetworkTester() {
-        this.tests = Arrays.stream(TestType.values()).map(TestType::createInstance).collect(Collectors.toSet());
+        this.tests = Arrays.stream(TestType.values()).map(TestType::createInstance).collect(Collectors.toList());
         this.doTests();
     }
 

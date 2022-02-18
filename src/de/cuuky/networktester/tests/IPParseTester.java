@@ -24,17 +24,19 @@ public class IPParseTester extends Test {
 
     @Override
     public void test() {
-        this.testIP("abc", false); // lol
+        this.testIP("...", false);
+        this.testIP("0a0.0.0", false);
+        this.testIP("abc", false);
         this.testIP("a.b.c.d", false);
         this.testIP("01.10.0.1", false);
-        this.testIP("00001.0.0.0", false);
+        this.testIP("0001.0.0.0", false);
         this.testIP("1.001.0.0", false);
         this.testIP("1..1.0.0", false);
         this.testIP("1.0.0.0.", false);
         this.testIP(".1.0.0.0", false);
-        this.testIP("1111.11110.1111.1111", false);
+        this.testIP("111.1110.111.111", false);
         this.testIP("256.192.0.100", false);
-        this.testIP("1111.1111.1111.1111", false);
+        this.testIP("111.111.1111.111", false);
         this.testIP("192.86.0.2", true);
         this.testIP("0.0.0.0", true);
         this.testIP("10.10.10.10", true);

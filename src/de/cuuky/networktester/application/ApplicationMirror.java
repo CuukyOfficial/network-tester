@@ -59,10 +59,12 @@ abstract class ApplicationMirror {
         }
     }
 
-    private void handleExecutableException(InvocationTargetException e) {
-        if (e.getCause().getClass().getSimpleName().equals(ParseException.class.getSimpleName()))
-            throw new ParseException(e.getCause().getMessage());
-        else throw new MirrorExecutableException(e);
+    private void handleExecutableException(Throwable t, Class<?> check) {
+        if (check.getSimpleName().equals(ParseException.class.getSimpleName()))
+            throw new ParseException(t.getMessage());
+        else if (t.getClass().getSuperclass() != null) {
+            this.handleExecutableException(t, t.getClass().getSuperclass());
+        } else throw new MirrorExecutableException(t);
     }
 
     private Class<?> findClass() {
@@ -75,7 +77,7 @@ abstract class ApplicationMirror {
         try {
             return this.mirrorClass.getDeclaredConstructor(mapParameterTypes).newInstance(mappedParameters);
         } catch (InvocationTargetException e) {
-            this.handleExecutableException(e);
+            this.handleExecutableException(e.getCause(), e.getClass());
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -88,7 +90,7 @@ abstract class ApplicationMirror {
         try {
             return this.getMethod(name, parameterClasses).invoke(this.mirror, mappedParameters);
         } catch (InvocationTargetException e) {
-            this.handleExecutableException(e);
+            this.handleExecutableException(e.getCause(), e.getClass());
         } catch (IllegalAccessException | NoSuchMethodException e) {
             e.printStackTrace();
         }

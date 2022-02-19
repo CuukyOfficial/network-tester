@@ -9,7 +9,8 @@ import java.util.function.Supplier;
 public enum TestType {
 
     EXAMPLE_INTERACTION("Example Interaction", ExampleInteractionTest::new),
-    IP_PARSE("IP Parser", IPParseTester::new);
+    IP_PARSE("IP Parser", IPParseTester::new),
+    NETWORK_PARSE("Network Parser", NetworkParseTester::new);
 
     private final String name;
     private final Supplier<Test> creator;

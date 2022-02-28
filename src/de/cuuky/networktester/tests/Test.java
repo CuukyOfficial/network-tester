@@ -1,5 +1,7 @@
 package de.cuuky.networktester.tests;
 
+import de.cuuky.networktester.application.ApplicationMirror;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -40,7 +42,9 @@ public abstract class Test {
      * @param <T> Type of the output
      */
     protected <T> void verify(String name, T test, T expected) {
-        this.results.add(new TestResult(name, Objects.equals(test, expected), test, expected));
+        Object parsedTest = ApplicationMirror.mapParameters(test)[0];
+        Object parsedExpected = ApplicationMirror.mapParameters(expected)[0];
+        this.results.add(new TestResult(name, Objects.equals(parsedTest, parsedExpected), parsedTest, parsedExpected));
     }
 
     /**

@@ -37,6 +37,8 @@ public class IPParseTester extends Test {
         this.testIP("111.1110.111.111", false);
         this.testIP("256.192.0.100", false);
         this.testIP("111.111.1111.111", false);
+        this.testIP(" 192.86.0.2", false);
+        this.testIP("192.86.0.2 ", false);
         this.testIP("192.86.0.2", true);
         this.testIP("0.0.0.0", true);
         this.testIP("10.10.10.10", true);

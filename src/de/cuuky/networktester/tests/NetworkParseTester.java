@@ -23,6 +23,11 @@ public class NetworkParseTester extends Test {
         this.testNetwork("(0.0.0.0)", false);
         this.testNetwork("(0.0.01. 187.187.187.187)", false);
         this.testNetwork("(0.0.010 187.187.187.187)", false);
+        this.testNetwork("(0.0.0.0 (172.0.0.1 1.1.1.1) )", false);
+        this.testNetwork("(0.0.0.0 (172.0.0.1 1.1.1.1)) ", false);
+        this.testNetwork(" (0.0.0.0 (172.0.0.1 1.1.1.1))", false);
+        this.testNetwork("( 0.0.0.0 (172.0.0.1 1.1.1.1))", false);
+        this.testNetwork("( 0.0.0.0 ( 172.0.0.1 1.1.1.1))", false);
         this.testNetwork("(0.0.0.0 (172.0.0.1 1.1.1.1))", true);
     }
 }

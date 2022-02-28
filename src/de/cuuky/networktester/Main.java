@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Main {
 
-    private static final String STARTUP = "NetworkTester v0.1.1 by Cuuky";
+    private static final String STARTUP = "NetworkTester v0.1.2 by Cuuky";
 
     private static CustomJarLoader loadedJar;
 
